@@ -1,0 +1,72 @@
+<form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+  <div
+    style="
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+      padding: 30px;
+    "
+  >
+    <mat-form-field appearance="outline">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name" placeholder="Enter your name" />
+      <mat-error
+        *ngIf="
+          contactForm.controls['name'].invalid &&
+          contactForm.controls['name'].touched
+        "
+      >
+        Name is required.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Phone Number</mat-label>
+      <input
+        matInput
+        formControlName="phoneNumber"
+        placeholder="Enter your phone number"
+      />
+      <mat-error
+        *ngIf="
+          contactForm.controls['phoneNumber'].invalid &&
+          contactForm.controls['phoneNumber'].touched
+        "
+      >
+        Phone number is required and must be 10 digits.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" placeholder="Enter your email" />
+      <mat-error
+        *ngIf="
+          contactForm.controls['email'].invalid &&
+          contactForm.controls['email'].touched
+        "
+      >
+        Email is required.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Message</mat-label>
+      <textarea
+        matInput
+        formControlName="message"
+        placeholder="Enter your message (optional)"
+      ></textarea>
+    </mat-form-field>
+
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="contactForm.invalid"
+    >
+      Submit
+    </button>
+  </div>
+</form>

@@ -1,0 +1,7 @@
+{
+  "routes": [
+    "/bio",
+    "/contact",
+    "/home"
+  ]
+}

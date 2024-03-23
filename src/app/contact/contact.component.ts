@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { EmailJsService } from '../services/email-js.service';
 
 @Component({
   selector: 'app-contact',
@@ -9,7 +10,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class ContactComponent implements OnInit {
   contactForm!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private emailJsService: EmailJsService
+  ) {}
 
   ngOnInit(): void {
     this.contactForm = this.formBuilder.group({
@@ -22,7 +26,7 @@ export class ContactComponent implements OnInit {
 
   onSubmit() {
     if (this.contactForm.valid) {
-      console.log(this.contactForm.value);
+      this.emailJsService.sendEmail(this.contactForm.value);
     }
   }
 }
